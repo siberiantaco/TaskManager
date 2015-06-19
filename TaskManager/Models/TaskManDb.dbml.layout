@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="TaskManDb">
+  <DataContextMoniker Name="/TaskManDbDataContext" />
+  <nestedChildShapes>
+    <classShape Id="83b777d2-09a4-4c80-a8fd-614284f3f122" absoluteBounds="5.5, 2.125, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/TaskManDbDataContext/Task" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c2b89f2a-4853-4356-b840-2298133123e0" absoluteBounds="5.515, 2.585, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.20923076923077 : 4.85740397135417); (6.20923076923077 : 5.10740397135417); (6.80461538461539 : 5.10740397135417); (6.80461538461539 : 4.85740397135417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TaskManDbDataContext/Task/Task_Task" />
+      <nodes>
+        <classShapeMoniker Id="83b777d2-09a4-4c80-a8fd-614284f3f122" />
+        <classShapeMoniker Id="83b777d2-09a4-4c80-a8fd-614284f3f122" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

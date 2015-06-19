@@ -1,0 +1,93 @@
+﻿@model TaskManager.Models.Task
+
+@{
+    ViewBag.Title = Resources.Resource.Edit;
+}
+
+<h2>@Resources.Resource.Edit</h2>
+
+@using (Ajax.BeginForm(new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "page-content-wrapper" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Task</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Executives)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Executives)
+            @Html.ValidationMessageFor(model => model.Executives)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RegDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.RegDate, "{0:yyyy-MM-dd}", new { @type = "date" })
+            @Html.ValidationMessageFor(model => model.RegDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Status)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Status, new SelectList(TaskManager.Models.TaskRepository.Statuses, "StatusId", "Name"))
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Laboriousness)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Laboriousness)
+            @Html.ValidationMessageFor(model => model.Laboriousness)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TaskTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TaskTime)
+            @Html.ValidationMessageFor(model => model.TaskTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EndDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.EndDate, "{0:yyyy-MM-dd}", new { @type = "date" })
+            @Html.ValidationMessageFor(model => model.EndDate)
+        </div>
+
+
+        <p>
+            <input type="submit" value="@Resources.Resource.Save" />
+        </p>
+    </fieldset>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

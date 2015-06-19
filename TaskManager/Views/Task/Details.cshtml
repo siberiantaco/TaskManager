@@ -1,0 +1,66 @@
+﻿@model TaskManager.Models.Task
+
+<fieldset>
+    <legend>@Resources.Resource.Task: @Html.DisplayFor(model => model.Name)</legend>
+
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Executives): @Html.DisplayFor(model => model.Executives)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RegDate): @Html.DisplayFor(model => model.RegDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Status): @TaskManager.Models.TaskRepository.Statuses.Single(model => model.StatusId == Model.Status).Name
+        
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Laboriousness): @Html.DisplayFor(model => model.Laboriousness) 
+         @if (ViewBag.subTasksAny)
+         {
+            <span class="label label-success">@Resources.Resource.With_subtasks: @ViewBag.info.Laboriousness </span>
+         }      
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TaskTime): @Html.DisplayFor(model => model.TaskTime) 
+         @if (ViewBag.subTasksAny)
+         {
+            <span class="label label-success">@Resources.Resource.With_subtasks: @ViewBag.info.TaskTime</span>
+         }
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EndDate): @Html.DisplayFor(model => model.EndDate)
+    </div>
+
+</fieldset>
+<p>
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-default">@Ajax.ActionLink(@Resources.Resource.Edit, "Edit", new { id = @Model.Id }, new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "page-content-wrapper" })</button>
+        <button type="button" class="btn btn-default">@Ajax.ActionLink(@Resources.Resource.Delete, "Delete", new { id = @Model.Id }, new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "page-content-wrapper", OnComplete = ("OnComplete(" + Model.Id + ")") })</button>
+        <button type="button" class="btn btn-default">@Ajax.ActionLink(@Resources.Resource.Create_subtask, "Create", new { id = @Model.Id }, new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "page-content-wrapper" })</button>
+    </div>
+
+        
+        
+</p>
+@if (ViewBag.subTasksAny)
+{
+    <legend>@Resources.Resource.Subtasks</legend>
+    <ul class="list-group">
+        @foreach (TaskManager.Models.Task t in ViewBag.subTasks)
+        {
+            <li class="list-group-item" id="@t.Id">
+                @Ajax.ActionLink(@t.Name, "Details", new { id = @t.Id }, new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "page-content-wrapper" })
+            </li>
+        }
+    </ul>
+}
